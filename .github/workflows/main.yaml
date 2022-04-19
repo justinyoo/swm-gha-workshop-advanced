@@ -1,0 +1,74 @@
+name: 'App Deploy'
+
+on:
+  push:
+    tags:
+    - 'v*'
+
+jobs:
+  build:
+    name: Build Apps
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the repo
+      uses: actions/checkout@v2
+
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.x'
+
+    - name: Restore NuGet packages
+      shell: bash
+      run: |
+        dotnet restore .
+
+    - name: Build solution
+      shell: bash
+      run: |
+        dotnet build . -c Release
+
+    - name: Create FunctionApp artifact
+      shell: bash
+      run: |
+        pushd api
+        dotnet publish . -c Release -o published
+        popd
+
+    - name: Upload FunctionApp artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: apiapp
+        path: api/published
+
+  release:
+    name: Release Apps
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download FunctionApp artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: apiapp
+        path: published/api
+
+    - name: Zip FunctionApp artifact
+      shell: bash
+      run: |
+        cd published/api
+        zip -qq -r apiapp.zip .
+        cd $GITHUB_WORKSPACE
+
+        mv published/api/apiapp.zip published/apiapp.zip
+
+    - name: Release FunctionApp artifact to GitHub
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        prerelease: false
+        files: |
+          published/apiapp.zip

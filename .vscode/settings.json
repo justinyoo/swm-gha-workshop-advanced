@@ -1,0 +1,8 @@
+{
+  "azureFunctions.deploySubpath": "api/bin/Release/net6.0/publish",
+  "azureFunctions.projectSubpath": "api",
+  "azureFunctions.projectLanguage": "C#",
+  "azureFunctions.projectRuntime": "~4",
+  "azureFunctions.preDeployTask": "publish (functions)",
+  "debug.internalConsoleOptions": "neverOpen"
+}
