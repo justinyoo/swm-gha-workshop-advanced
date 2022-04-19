@@ -11,6 +11,7 @@
 * [GitHub CLI](https://cli.github.com/)
 * [Docker Desktop](https://docs.docker.com/get-docker/)
 * [Azure Account (free)](https://azure.microsoft.com/free/?WT.mc_id=dotnet-63968-juyoo)
+* [Azure Functions Core Tools](https://docs.microsoft.com/azure/azure-functions/functions-run-local?WT.mc_id=dotnet-63968-juyoo)
 
 
 ## 세션 진행 순서 ##
