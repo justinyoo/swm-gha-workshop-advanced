@@ -19,7 +19,7 @@
 1. [환경 설정](https://github.com/justinyoo/swm-gha-workshop-advanced/blob/steps/01/steps-01.md)
 2. [앱 배포 오토파일럿](https://github.com/justinyoo/swm-gha-workshop-advanced/blob/steps/02/steps-02.md)
 3. [깃헙 액션: workflow_call](https://github.com/justinyoo/swm-gha-workshop-advanced/blob/steps/03/steps-03.md)
-4. 깃헙 액션: multi-stage deployment #1 - dev/test/prod
+4. [깃헙 액션: multi-stage deployment #1 - dev/test/prod](https://github.com/justinyoo/swm-gha-workshop-advanced/blob/steps/04/steps-04.md)
 5. 깃헙 액션: multi-stage deployment #2 - GitHub release
 
 
